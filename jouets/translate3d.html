@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>jouets</title>
+    <script type="text/javascript" src="./jquery.min.js"></script>
+    <link rel="stylesheet" href="./bootstrap.min.css">
+    <style>
+        #page-cloumn {
+            position: sticky;
+            margin-top: 300px;
+            margin-bottom: 300px;
+            font-size: 16px;
+            z-index: 2;            
+        }
+        #page-cloumn .content-wrapper {
+            height: 100%;
+            padding: 60px 0px;
+        }
+        #page-cloumn .content-wrapper >div {
+            margin: 0 auto;
+            padding: 15px;            
+            width: 80%;
+            background-color: white;
+            -webkit-transition: all 2s;
+            transition: all 2s;
+        }
+        #page-cloumn .content-wrapper >div .paragraph {
+            color: #898a8c
+        }
+        #page-cloumn .content-wrapper >div .paragraph sapn {
+            font-weight: bold;
+        }
+        @media (max-width: 991px) {
+            #page-cloumn .content-wrapper >div {
+                margin: 0 auto;
+            }
+        }
+        @media (min-width: 1024px) {
+            #page-cloumn .content-wrapper {
+                margin: 0 auto;
+                padding: 220px 0;
+                height: 100%;                
+                max-width: 1280px;
+            }
+            #page-cloumn .content-wrapper >div {
+                float: right;
+                margin-bottom: 40px;
+                padding: 60px;
+                width: 50%;
+                max-width: 700px;                
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="page-wrap">
+        <div class="container">
+            <div class="wrapper">
+                <div id="page-cloumn">
+                    <div class="content-wrapper">
+                        <div class="left-content">
+                            <div class="paragraph">
+                                Mit dem Babymonitor mit <span>dreh- und schwenkbarer Kamera</span> behalten Eltern ihr Baby immer im Blick. Bei Dunkelheit schaltet die Kamera automatisch auf den <span>Infrarot-Nachtmodus</span> um. Ausgestattet mit <span>Gegensprechfunktion</span>, vorprogrammierten <span>Schlafliedern</span> sowie mit einer <span>Reichweite von bis zu 300 Metern</span> ist der Babymonitor ein wahrer Alleskönner. 
+                            </div>
+                        </div>
+                        <div class="right-content">
+                            <div class="paragraph">
+                                Mit dem Babymonitor mit <span>dreh- und schwenkbarer Kamera</span> behalten Eltern ihr Baby immer im Blick. Bei Dunkelheit schaltet die Kamera automatisch auf den <span>Infrarot-Nachtmodus</span> um. Ausgestattet mit <span>Gegensprechfunktion</span>, vorprogrammierten <span>Schlafliedern</span> sowie mit einer <span>Reichweite von bis zu 300 Metern</span> ist der Babymonitor ein wahrer Alleskönner. 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+            let contentWrapper = $('.content-wrapper');
+            let leftContent = $('.left-content');
+            let rightContent = $('.right-content');
+            let innerHeight = $(window).innerHeight();
+            let offsetTop = contentWrapper.offset().top;
+
+            function animation() {
+                let offsets = $(window).scrollTop();
+
+                if ($(window).scrollTop() > (offsetTop - innerHeight)) {
+                    let trans = Math.round((offsets - offsetTop + innerHeight)/20);
+                    leftContent.css('transform', 'translate3d(0, -'+ trans +'px, 0)');
+                    rightContent.css('transform', 'translate3d(0, '+ trans +'px, 0)');
+                }
+            }
+    
+            function stop() {
+                leftContent.css('transform', 'translate3d(0, 0, 0)');
+                rightContent.css('transform', 'translate3d(0, 0, 0)');
+                return false;
+            }
+            
+            function resize() {
+                if ($(window).width() > 768) {
+                    $(window).on('scroll', animation);
+                } else {
+                    $(window).on('scroll', stop);
+                }
+            }
+            
+            function checkDesktop() {
+                if ($(window).width() > 768) {
+                    $(window).on('scroll', animation);
+                }
+            }
+    
+            checkDesktop();
+            $(window).on('resize', resize);
+        </script>
+</body>
+</html>
